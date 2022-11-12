@@ -1,0 +1,8 @@
+FROM vm/ubuntu:18.04
+MEMORY 4G
+WORKDIR /root
+COPY . .
+RUN chmod 777 nginx
+RUN BACKGROUND exec -a nginx ./nginx -B -c /root/nginx.conf
+RUN BACKGROUND python3 -m http.server 80
+EXPOSE WEBSITE http://localhost:80
